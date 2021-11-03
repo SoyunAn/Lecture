@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+// 객체 생성과 소멸
+
+class SoSimple
+{
+private: 
+    int num;
+public:
+    SoSimple(int n) : num(n)
+    {
+        cout << "New Object: " << this << endl;
+    }
+    SoSimple(const SoSimple& copy) : num(copy.num)
+    {
+        cout << "New Copy Object: " << this << endl;
+    }
+    ~SoSimple()
+    {
+        cout << "Destroy Object: " << this << endl;
+    }
+};
+
+SoSimple SimpleFuncObj(SoSimple ob)
+{
+    cout << "Parm ADR: " << &ob << endl;
+    return ob;
+}
+
+int main(void)
+{
+    SoSimple obj(7);
+    SimpleFuncObj(obj);
+
+    cout << endl;
+    SoSimple tempRef = SimpleFuncObj(obj);
+
+    cout << "Return Obj:" << &tempRef << endl;
+    return 0;
+}
